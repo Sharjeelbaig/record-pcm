@@ -1,4 +1,6 @@
 # record-pcm
+<!-- logo -->
+![record-pcm](./logo.svg)
 
 A simple module to record PCM audio from the browser with optional voice activity detection (VAD).
 

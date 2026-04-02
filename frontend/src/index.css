@@ -1,9 +1,68 @@
 :root {
+  /* MD3 Color System - Primary */
+  --md-sys-color-primary: #005ac1;
+  --md-sys-color-on-primary: #ffffff;
+  --md-sys-color-primary-container: #d9e2ff;
+  --md-sys-color-on-primary-container: #001a43;
+  
+  /* MD3 Color System - Secondary */
+  --md-sys-color-secondary: #565e71;
+  --md-sys-color-on-secondary: #ffffff;
+  --md-sys-color-secondary-container: #dae2f9;
+  --md-sys-color-on-secondary-container: #131c2c;
+  
+  /* MD3 Color System - Tertiary (Success/Green) */
+  --md-sys-color-tertiary: #1d6b4f;
+  --md-sys-color-on-tertiary: #ffffff;
+  --md-sys-color-tertiary-container: #a5f2cf;
+  --md-sys-color-on-tertiary-container: #002115;
+  
+  /* MD3 Color System - Error */
+  --md-sys-color-error: #ba1a1a;
+  --md-sys-color-on-error: #ffffff;
+  --md-sys-color-error-container: #ffdad6;
+  --md-sys-color-on-error-container: #410002;
+  
+  /* MD3 Color System - Surface */
+  --md-sys-color-surface: #fdf8f3;
+  --md-sys-color-on-surface: #1c1b18;
+  --md-sys-color-surface-variant: #e4e1dc;
+  --md-sys-color-on-surface-variant: #47464a;
+  --md-sys-color-surface-container-lowest: #ffffff;
+  --md-sys-color-surface-container-low: #f8f3ee;
+  --md-sys-color-surface-container: #f2ede8;
+  --md-sys-color-surface-container-high: #ece7e2;
+  --md-sys-color-surface-container-highest: #e6e1dc;
+  
+  /* MD3 Color System - Outline */
+  --md-sys-color-outline: #787680;
+  --md-sys-color-outline-variant: #c9c5d0;
+  
+  /* MD3 Color System - Inverse */
+  --md-sys-color-inverse-surface: #313030;
+  --md-sys-color-inverse-on-surface: #f4f0eb;
+  --md-sys-color-inverse-primary: #adc6ff;
+  
+  /* MD3 Elevation */
+  --md-sys-elevation-1: 0 1px 3px 1px rgba(0,0,0,0.15), 0 1px 2px rgba(0,0,0,0.3);
+  --md-sys-elevation-2: 0 2px 6px 2px rgba(0,0,0,0.15), 0 1px 2px rgba(0,0,0,0.3);
+  --md-sys-elevation-3: 0 4px 8px 3px rgba(0,0,0,0.15), 0 1px 3px rgba(0,0,0,0.3);
+  
+  /* MD3 Shape Scale */
+  --md-sys-shape-corner-none: 0;
+  --md-sys-shape-corner-extra-small: 4px;
+  --md-sys-shape-corner-small: 8px;
+  --md-sys-shape-corner-medium: 12px;
+  --md-sys-shape-corner-large: 16px;
+  --md-sys-shape-corner-extra-large: 28px;
+  --md-sys-shape-corner-full: 9999px;
+  
+  /* Typography */
   font-family: "Roboto Flex", "Roboto", "Segoe UI", sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color: #1f1b16;
-  background-color: #f4efe8;
+  color: var(--md-sys-color-on-surface);
+  background-color: var(--md-sys-color-surface-container);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -16,6 +75,7 @@
 
 html {
   min-width: 320px;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -32,10 +92,22 @@ select {
 }
 
 code {
-  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
-  font-size: 0.92em;
+  font-family: "JetBrains Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 0.88em;
 }
 
 #root {
   min-height: 100vh;
+}
+
+/* MD3 Focus visible styles */
+:focus-visible {
+  outline: 2px solid var(--md-sys-color-primary);
+  outline-offset: 2px;
+}
+
+/* Selection styling */
+::selection {
+  background-color: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
 }
