@@ -1,0 +1,37 @@
+{
+  "name": "record-pcm",
+  "version": "1.0.0",
+  "description": "A simple module to record PCM audio from the browser with voice activity detection",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts --clean",
+    "prepublishOnly": "bun run build"
+  },
+  "keywords": [
+    "pcm",
+    "audio",
+    "recording",
+    "microphone",
+    "web-audio",
+    "voice-activity-detection",
+    "vad"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0"
+  }
+}

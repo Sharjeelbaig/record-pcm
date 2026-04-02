@@ -1,0 +1,161 @@
+.container {
+  max-width: 800px;
+  width: 100%;
+  padding: 2rem;
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-top: 0;
+  color: #61dafb;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(61, 218, 251, 0.3);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.button-group {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  color: white;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: #3d7aaf;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: #4a8fbe;
+}
+
+.btn-success {
+  background: #27ae60;
+}
+
+.btn-success:hover:not(:disabled) {
+  background: #2ecc71;
+}
+
+.btn-purple {
+  background: #9b59b6;
+}
+
+.btn-purple:hover:not(:disabled) {
+  background: #8e44ad;
+}
+
+.btn-danger {
+  background: #e74c3c;
+}
+
+.btn-danger:hover:not(:disabled) {
+  background: #c0392b;
+}
+
+.status {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 1rem;
+  border-radius: 6px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.95rem;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+}
+
+.status.recording {
+  background: rgba(231, 76, 60, 0.2);
+  border-left: 4px solid #e74c3c;
+}
+
+.status.listening {
+  background: rgba(155, 89, 182, 0.2);
+  border-left: 4px solid #9b59b6;
+}
+
+.status.speaking {
+  background: rgba(231, 76, 60, 0.2);
+  border-left: 4px solid #e74c3c;
+  animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.stats {
+  display: grid;
+  gap: 1rem;
+}
+
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.stat-item span {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.stat-item strong {
+  color: #61dafb;
+  font-size: 1.1rem;
+}
+
+ul {
+  line-height: 1.8;
+}
+
+li {
+  margin-bottom: 0.75rem;
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 1rem;
+  }
+
+  h1 {
+    font-size: 1.75rem;
+  }
+
+  .button-group {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
