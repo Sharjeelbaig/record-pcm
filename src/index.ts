@@ -1,6 +1,13 @@
+export interface PCMData {
+  /** Base64-encoded PCM data */
+  pcmBase64: string;
+  /** Raw PCM data as Uint8Array */
+  pcm: Uint8Array;
+}
+
 export interface RecordPCMOptions {
-  /** Called with PCM audio data chunks as Uint8Array */
-  onData: (pcmData: Uint8Array) => void;
+  /** Called with PCM audio data chunks */
+  onData: (data: PCMData) => void;
   /** Called when an error occurs */
   onError?: (error: Error) => void;
   /** Called when recording stops (either manually or via VAD) */
@@ -18,8 +25,8 @@ export interface RecordPCMOptions {
 }
 
 export interface ListenForSpeechOptions {
-  /** Called with PCM audio data chunks as Uint8Array (only when speech is detected) */
-  onData: (pcmData: Uint8Array) => void;
+  /** Called with PCM audio data chunks (only when speech is detected) */
+  onData: (data: PCMData) => void;
   /** Called when an error occurs */
   onError?: (error: Error) => void;
   /** Called when speech starts (auto-start triggered) */
@@ -40,6 +47,15 @@ export interface ListenForSpeechOptions {
 
 export type StopRecording = () => void;
 export type StopListening = () => void;
+
+/** Convert Uint8Array to base64 string */
+function uint8ToBase64(bytes: Uint8Array): string {
+  let binary = '';
+  for (let i = 0; i < bytes.length; i++) {
+    binary += String.fromCharCode(bytes[i]);
+  }
+  return btoa(binary);
+}
 
 /**
  * Records PCM audio from the user's microphone.
@@ -190,8 +206,11 @@ export function recordPCM(options: RecordPCMOptions): StopRecording {
 
         const { pcmData, rms } = event.data;
         
-        // Send PCM data to callback
-        onData(pcmData);
+        // Send PCM data to callback with both formats
+        onData({
+          pcmBase64: uint8ToBase64(pcmData),
+          pcm: pcmData,
+        });
 
         // Voice activity detection
         if (vadEnabled) {
@@ -379,6 +398,10 @@ export function listenForSpeech(options: ListenForSpeechOptions): StopListening 
         if (!isListening) return;
 
         const { pcmData, rms } = event.data;
+        const data: PCMData = {
+          pcmBase64: uint8ToBase64(pcmData),
+          pcm: pcmData,
+        };
         
         if (rms >= vadThreshold) {
           // Voice detected
@@ -392,12 +415,12 @@ export function listenForSpeech(options: ListenForSpeechOptions): StopListening 
           }
           
           // Send PCM data only when speaking
-          onData(pcmData);
+          onData(data);
         } else {
           // Silence detected
           if (isSpeaking) {
             // Still send data during brief silence (within speech)
-            onData(pcmData);
+            onData(data);
             
             if (silenceStart === null) {
               silenceStart = Date.now();
