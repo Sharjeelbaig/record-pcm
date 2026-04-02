@@ -878,9 +878,9 @@ function App() {
     setIsRecording(true)
 
     stopRef.current = recordPCM({
-      onData: (pcmData) => {
-        setPcmChunks((prev) => [...prev, pcmData])
-        setDataSize((prev) => prev + pcmData.length)
+      onData: (data) => {
+        setPcmChunks((prev) => [...prev, data.pcm])
+        setDataSize((prev) => prev + data.pcm.length)
       },
       onError: (error) => {
         setStatusMessage(`Capture error: ${error.message}`)
@@ -911,9 +911,9 @@ function App() {
 
     stopRef.current = listenForSpeech({
       continuous: true,
-      onData: (pcmData) => {
-        setPcmChunks((prev) => [...prev, pcmData])
-        setDataSize((prev) => prev + pcmData.length)
+      onData: (data) => {
+        setPcmChunks((prev) => [...prev, data.pcm])
+        setDataSize((prev) => prev + data.pcm.length)
       },
       onError: (error) => {
         setStatusMessage(`Capture error: ${error.message}`)
