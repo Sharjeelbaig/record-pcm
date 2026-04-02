@@ -206,6 +206,9 @@ export function recordPCM(options: RecordPCMOptions): StopRecording {
 
         const { pcmData, rms } = event.data;
         
+        // Guard against empty or malformed data from worklet
+        if (!pcmData || pcmData.length === 0) return;
+        
         // Send PCM data to callback with both formats
         onData({
           pcmBase64: uint8ToBase64(pcmData),
@@ -398,6 +401,10 @@ export function listenForSpeech(options: ListenForSpeechOptions): StopListening 
         if (!isListening) return;
 
         const { pcmData, rms } = event.data;
+        
+        // Guard against empty or malformed data from worklet
+        if (!pcmData || pcmData.length === 0) return;
+        
         const data: PCMData = {
           pcmBase64: uint8ToBase64(pcmData),
           pcm: pcmData,
