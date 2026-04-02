@@ -1,6 +1,6 @@
 {
   "name": "record-pcm",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple module to record PCM audio from the browser with voice activity detection",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
